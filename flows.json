@@ -1,0 +1,502 @@
+[
+    {
+        "id": "da87c06b1630f232",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f64ef98e29994e70",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-custom",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#485cef",
+                "baseFont": "Arial,Arial,Helvetica,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#485cef",
+                    "value": "#485cef",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#485cef",
+                    "edited": true
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#8e9bf5",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#485cef",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Arial,Arial,Helvetica,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "205606e184a7fe4c",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f529b217e3c98753",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "295842c0ae550b53",
+        "type": "ui_tab",
+        "name": "Login",
+        "icon": "",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "7af773d23c0231cd",
+        "type": "ui_group",
+        "name": "Login Form",
+        "tab": "295842c0ae550b53",
+        "order": 2,
+        "disp": false,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "169a8290f14f2096",
+        "type": "ui_group",
+        "name": "Hide group frame",
+        "tab": "295842c0ae550b53",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "81ef54f27017475c",
+        "type": "ui_tab",
+        "name": "Admin Panel",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4990ebb879db9878",
+        "type": "ui_tab",
+        "name": "User Panel",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3ca1c64d53eba629",
+        "type": "ui_group",
+        "name": "Group 1 - Admin",
+        "tab": "81ef54f27017475c",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "664e765b6d3f60a4",
+        "type": "ui_group",
+        "name": "Group 1 - User",
+        "tab": "4990ebb879db9878",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f73417ef6a7504fa",
+        "type": "ui_template",
+        "z": "da87c06b1630f232",
+        "group": "169a8290f14f2096",
+        "name": "Reset CSS",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    * {\n        margin: 0;\n        padding: 0;\n        box-sizing: border-box !important; \n    }\n\n    /* Ẩn tiêu đề group */\n    .nr-dashboard-cardtitle {\n        display: none !important;\n    }\n\n    /* Xóa mọi thứ liên quan tới khung của group */\n    ui-card-panel,\n    .nr-dashboard-template,\n    .nr-dashboard-card,\n    .nr-dashboard-group,\n    .md-card,\n    md-content,\n    md-card-content,\n    .nr-dashboard-theme,\n    .md-default-theme .md-card,\n    .nr-dashboard-theme md-content,\n    md-content.md-default-theme { \n        box-shadow: none !important;\n        border: none !important;\n        padding: 0 !important;\n        margin: 0 !important;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aec95dda1672bc0d",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "register-handler",
+        "func": "let db = global.get(\"firebase\").db;\n\nlet { email, username, password } = msg.payload;\nlet role = \"user\";\n\nif (!email || !username || !password) {\n    msg.statusCode = 400;\n    msg.payload = { \n        success: false,\n        error: \"Missing fields!\" \n    };\n    return msg;\n}\n\nreturn db.collection(\"accounts\").doc(username).get()\n    .then(doc => {\n        if (doc.exists) {\n            // Tên người dùng đã tồn tại\n            msg.statusCode = 409;\n            msg.payload = {\n                success: false,\n                error: \"Tên người dùng đã được sử dụng.\" \n            };\n            return msg;\n        }\n        else {\n            // Đăng ký người dùng mới\n            return db.collection(\"accounts\").doc(username).set({\n                email: email,\n                username: username,\n                password: password,\n                role: role\n            })\n            .then(() => {\n                msg.statusCode = 200;\n                msg.payload = {\n                    success: true,\n                    message: \"Đăng ký thành công!\" \n                };\n                return msg;\n            })\n        }\n    })\n    .catch(err => {\n        msg.statusCode = 500;\n        msg.payload = {\n            success: false,\n            error: \"Lỗi server: \" + err.message \n        };\n        return msg;\n    })",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 320,
+        "wires": [
+            [
+                "f3cd558fae2dd09b"
+            ]
+        ]
+    },
+    {
+        "id": "295d8d5f00452f9f",
+        "type": "http in",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "url": "/register",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "aec95dda1672bc0d"
+            ]
+        ]
+    },
+    {
+        "id": "f3cd558fae2dd09b",
+        "type": "http response",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "152372a6f8c7e3f3",
+        "type": "http in",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "url": "/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "2bdba2c5423e2e67"
+            ]
+        ]
+    },
+    {
+        "id": "2bdba2c5423e2e67",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "login-handler",
+        "func": "let db = global.get(\"firebase\").db;\n\nlet { username, password } = msg.payload;\n\nreturn db.collection(\"accounts\")\n    .where(\"username\", \"==\", username)\n    .get()\n    .then(snapshot => {\n        if (snapshot.empty) {\n            msg.payload = {\n                success: false,\n                error: \"Tài khoản không tồn tại\"\n            };\n            return [msg, msg];\n        }\n        \n        let userDoc = snapshot.docs[0];\n        let userData = userDoc.data();\n\n        if (userData.password === password) {\n            msg.payload = {\n                success: true,\n                role: userData.role,\n                message: \"Đăng nhập thành công!\"\n            };\n        }\n        else {\n            msg.payload = {\n                success: false,\n                error: \"Sai mật khẩu!\"\n            };\n        }\n        return [msg, msg];\n    })\n    .catch(err => {\n        msg.payload = \"Lỗi hệ thống: \" + err.message;\n        return [msg, null];\n    });",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "2fd018e143bacb74"
+            ],
+            [
+                "2c980a16b067258a"
+            ]
+        ]
+    },
+    {
+        "id": "2fd018e143bacb74",
+        "type": "http response",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "9c377bcdcf4dfbed",
+        "type": "ui_template",
+        "z": "da87c06b1630f232",
+        "group": "7af773d23c0231cd",
+        "name": "login-page",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div class=\"container sign-in-container\">\n    <div class=\"sign-in-box\">\n        <div class=\"heading\">\n            Parking System\n        </div>\n        <form id=\"sign-in-form\">\n            <div class=\"input-box\">\n                <input type=\"text\" placeholder=\"Username\" id=\"username-signin\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"password\" placeholder=\"Password\" id=\"password-signin\" class=\"form-control\" required>\n            </div>\n            <button type=\"submit\">Login</button>\n        </form>\n\n       <div class=\"sign-up-btn js-sign-up-btn\">\n            Sign Up \n        </div>\n    </div>\n</div>\n\n<div class=\"container sign-up-container\">\n    <div class=\"sign-up-box\">\n        <div class=\"heading\"> \n            Sign Up\n        </div>\n        <form id=\"sign-up-form\">\n            <div class=\"input-box\">\n                <input type=\"email\" placeholder=\"Email\" id=\"email-signup\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"text\" placeholder=\"Username\" id=\"username-signup\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"password\" placeholder=\"Password\" id=\"password-signup\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"password\" placeholder=\"Password again\" id=\"password-again-signup\" class=\"form-control\" required>\n            </div>\n            <button type=\"submit\">Register</button>\n        </form>\n\n        <div class=\"back-login-btn js-back-login-btn\">\n            Back to login\n        </div>\n    </div>\n</div>\n\n\n<style>\n    .open {\n        display: flex !important;\n    }\n\n    .close {\n        display: none !important;\n    }\n\n    .container {\n        position: fixed;\n        top: 0;\n        bottom: 0;\n        left: 0;\n        right: 0;\n    }\n\n    .sign-in-container {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        font-family: 'Arial', sans-serif;\n        width: 100%;\n        height: 100%;\n        background: transparent !important;\n        box-shadow: none !important;\n    }\n\n    .sign-up-container {\n        display: none;\n        justify-content: center;\n        align-items: center;\n        font-family: 'Arial', sans-serif;\n        width: 100%;\n        height: 100%;\n        background: transparent !important;\n        box-shadow: none !important;\n        animation: modalFadeIn ease 0.5s;\n    }\n\n    .sign-in-box,\n    .sign-up-box {\n        background-color: rgba(255, 255, 255, 0.9);\n        border-radius: 10px;\n        padding: 20px 40px;\n        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);\n        text-align: center;\n        width: 100%;\n        max-width: 500px;\n    }\n\n    .sign-in-box .heading,\n    .sign-up-box .heading {\n        font-size: 24px;\n        font-weight: 700;\n        margin-bottom: 20px;\n        color: #485CEF !important;\n        background-color: transparent !important;\n    }\n\n    .input-box {\n        width: 100%;\n        margin-top: 10px;\n    }\n\n    form .form-control {\n        display: inline-block !important; \n        width: 100% !important; \n        padding: 12px;\n        border-radius: 6px;\n        border: 1px solid #ccc;\n        font-size: 16px;\n    }\n\n    form button {\n        width: 100%;\n        padding: 12px;\n        margin-top: 20px;\n        border: none;\n        border-radius: 6px;\n        background-color: #1976D2;\n        color: white;\n        font-size: 16px;\n        cursor: pointer;\n        transition: background-color 0.3s ease;\n    }\n\n    form button:hover {\n        background-color: #1565C0;\n    }\n\n    .sign-up-btn,\n    .back-login-btn {\n        width: 100%;\n        margin-top: 16px;\n        text-align: center;\n        font-size: 12px;\n        text-decoration: underline;\n        color: #4869ef !important;\n        background-color: transparent !important;\n    }\n\n    .sign-up-btn:hover,\n    .back-login-btn:hover {\n        cursor: pointer;\n        opacity: 0.6;\n    }\n\n    @keyframes modalFadeIn {\n        from {\n            opacity: 0;\n            transform: translateY(-140px);\n        }\n        to {\n            opacity: 1;\n            transform: translateY(0);\n        }\n    }\n\n</style>\n\n\n<script>\n    let signup_btn = document.querySelector('.js-sign-up-btn');\n    let backlogin_btn = document.querySelector('.js-back-login-btn');\n    let signin_container = document.querySelector('.sign-in-container');\n    let signup_container = document.querySelector('.sign-up-container');\n    \n    function showSignUp() {\n        signin_container.classList.add('close');\n        signup_container.classList.add('open');\n    }\n    \n    function hideSignUp() {\n        signin_container.classList.remove('close');\n        signup_container.classList.remove('open');\n    }\n    \n    signup_btn.addEventListener('click', showSignUp);\n    backlogin_btn.addEventListener('click', hideSignUp);\n    \n    // --------- Xử lý đăng ký tài khoản ---------\n    document.getElementById('sign-up-form').addEventListener('submit', function(event) {\n        event.preventDefault();\n        \n        let email = document.getElementById(\"email-signup\").value;\n        let username = document.getElementById(\"username-signup\").value;\n        let password = document.getElementById(\"password-signup\").value;\n        let passwordAgain = document.getElementById(\"password-again-signup\").value;\n        \n        let registed_data = {\n            email: email,\n            username: username,\n            password: password\n        };\n        \n        if (password !== passwordAgain) {\n            alert(\"Passwords do not match!\");\n            return;\n        };\n            \n        fetch(\"/register\", {\n            method: \"POST\",\n            headers: {\n            \"Content-Type\": \"application/json\"\n            },\n            body: JSON.stringify(registed_data)\n        })\n        .then((res) => res.json())\n        .then(data => {\n            if (data.success) {\n                alert(data.message);\n            }\n            else {\n                alert(\"Đăng ký thất bại: \" + data.error);\n            }\n        })\n        .catch((err) => console.error(err));\n    });\n\n    \n    // --------- Xử lý đăng nhập tài khoản ---------\n    document.getElementById('sign-in-form').addEventListener('submit', function(event) {\n        event.preventDefault();\n        \n        let username = document.getElementById('username-signin').value;\n        let password = document.getElementById('password-signin').value;\n\n        let login_data = {\n            username: username,\n            password: password\n        };\n\n        fetch(\"/login\", {\n            method: \"POST\",\n            headers: {\"Content-Type\": \"application/json\"},\n            body: JSON.stringify(login_data)\n        })\n        .then((res) => res.json())\n        .then(data => {\n            if (data.success) {\n                console.log(data.message);\n            }\n            else {\n                console.log(data.error);\n            }\n        })\n        .catch(err => alert(\"Lỗi khi gửi login: \" + err));\n    });\n\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 630,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "151b649810818a4e",
+        "type": "ui_ui_control",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "events": "all",
+        "x": 840,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c980a16b067258a",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "Chọn tab ứng với admin/user",
+        "func": "if (msg.payload.success) {\n    \n    let nextTab = (msg.payload.role === \"admin\") ? \"Admin Panel\" : \"User Panel\";\n    \n    msg.payload = {\n        \"tab\": nextTab\n    }\n\n    return msg;\n} else {\n    node.warn(\"Sai thông tin đăng nhập: \" + msg.payload.message);\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "151b649810818a4e"
+            ]
+        ]
+    },
+    {
+        "id": "341397d26d5d58f0",
+        "type": "ui_slider",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "label": "slider - Admin",
+        "tooltip": "",
+        "group": "3ca1c64d53eba629",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "className": "",
+        "x": 560,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "60a3a63cc760533f",
+        "type": "ui_text_input",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "label": "input - User",
+        "tooltip": "",
+        "group": "664e765b6d3f60a4",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 550,
+        "y": 700,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "868c228f862e5cba",
+        "type": "inject",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "0.1",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 260,
+        "wires": [
+            [
+                "9c377bcdcf4dfbed",
+                "1e5b0ffb31356576"
+            ]
+        ]
+    },
+    {
+        "id": "1e5b0ffb31356576",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "function 1",
+        "func": "msg.payload = {\n    \"tabs\": {\n        \"hide\": [\n            \"Admin Panel\", \n            \"User Panel\"\n        ]\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 160,
+        "wires": [
+            [
+                "ecd80e87fcf81b80"
+            ]
+        ]
+    },
+    {
+        "id": "ecd80e87fcf81b80",
+        "type": "ui_ui_control",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "events": "all",
+        "x": 980,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    }
+]
