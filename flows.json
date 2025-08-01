@@ -48,6 +48,14 @@
         "env": []
     },
     {
+        "id": "a40e584c8e5de0f2",
+        "type": "tab",
+        "label": "RFID",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "f64ef98e29994e70",
         "type": "ui_base",
         "theme": {
@@ -294,6 +302,37 @@
         "order": 7,
         "disabled": false,
         "hidden": false
+    },
+    {
+        "id": "12d69b4da3954903",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.mqtt-dashboard.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
     },
     {
         "id": "f73417ef6a7504fa",
@@ -568,6 +607,99 @@
         "color": "#000000",
         "x": 410,
         "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ae59dc262e5bbecb",
+        "type": "function",
+        "z": "a40e584c8e5de0f2",
+        "name": "Đọc UID thẻ",
+        "func": "let db = global.get(\"firebase\").db;\nlet { ID } = msg.payload;\n\nlet now = new Date();\nlet nowTime = now.toTimeString().split(' ')[0];  \n\nreturn db.collection(\"ID\").doc(ID).get()\n.then(doc => {\n    if (!doc.exists) {\n        return db.collection(\"ID\").doc(ID).set({\n            position: '',\n            time_in: nowTime,\n            time_out: null,\n        }).then(() => {\n            msg.payload = { message: nowTime };\n            msg.statusCode = 200;\n            return msg;\n        });\n    }\n\n    let data = doc.data();\n\n    if (!data.time_out) {\n        let [h, m, s] = data.time_in.split(\":\" ).map(Number);\n        let timeIn = new Date();\n        timeIn.setHours(h, m, s, 0);  \n\n        let diffMinutes = Math.floor((now - timeIn) / (1000 * 60));\n        let price = diffMinutes * 1000;\n\n        return db.collection(\"ID\").doc(ID).update({\n            time_out: nowTime\n        }).then(() => {\n            msg.payload = { price: price };\n            msg.statusCode = 200;\n            return msg;\n        });\n    }\n\n    return db.collection(\"ID\").doc(ID).update({\n        position: '',\n        time_in: nowTime,\n        time_out: null,\n    }).then(() => {\n        msg.payload = { message: nowTime };\n        msg.statusCode = 200;\n        return msg;\n    });\n});\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "66dcbe4143e71a11",
+                "5bf3abaa1cad2399"
+            ]
+        ]
+    },
+    {
+        "id": "1df6d03abe47796d",
+        "type": "mqtt in",
+        "z": "a40e584c8e5de0f2",
+        "name": "",
+        "topic": "parking/uid",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12d69b4da3954903",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "ae59dc262e5bbecb",
+                "811e221f77a192a8"
+            ]
+        ]
+    },
+    {
+        "id": "5bf3abaa1cad2399",
+        "type": "mqtt out",
+        "z": "a40e584c8e5de0f2",
+        "name": "",
+        "topic": "parking/response",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "12d69b4da3954903",
+        "x": 790,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "811e221f77a192a8",
+        "type": "debug",
+        "z": "a40e584c8e5de0f2",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "66dcbe4143e71a11",
+        "type": "debug",
+        "z": "a40e584c8e5de0f2",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 780,
+        "y": 460,
         "wires": []
     }
 ]
