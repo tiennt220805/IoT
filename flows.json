@@ -2,7 +2,47 @@
     {
         "id": "da87c06b1630f232",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Login",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "45b68366d67e5545",
+        "type": "tab",
+        "label": "Admin - Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "809f97db1d2ec250",
+        "type": "tab",
+        "label": "Admin - Statistics",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "21e60a2b1e9ad4b1",
+        "type": "tab",
+        "label": "Admin - Temperature",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "101e73a07b35c01a",
+        "type": "tab",
+        "label": "User - Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c6ddfa3077e5111b",
+        "type": "tab",
+        "label": "User - Password",
         "disabled": false,
         "info": "",
         "env": []
@@ -211,7 +251,7 @@
     {
         "id": "664e765b6d3f60a4",
         "type": "ui_group",
-        "name": "Group 1 - User",
+        "name": "Control Button",
         "tab": "4990ebb879db9878",
         "order": 1,
         "disp": true,
@@ -429,31 +469,6 @@
         ]
     },
     {
-        "id": "341397d26d5d58f0",
-        "type": "ui_slider",
-        "z": "da87c06b1630f232",
-        "name": "",
-        "label": "slider - Admin",
-        "tooltip": "",
-        "group": "3ca1c64d53eba629",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "passthru": true,
-        "outs": "all",
-        "topic": "topic",
-        "topicType": "msg",
-        "min": 0,
-        "max": 10,
-        "step": 1,
-        "className": "",
-        "x": 560,
-        "y": 600,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "60a3a63cc760533f",
         "type": "ui_text_input",
         "z": "da87c06b1630f232",
@@ -471,8 +486,8 @@
         "sendOnBlur": true,
         "className": "",
         "topicType": "msg",
-        "x": 550,
-        "y": 700,
+        "x": 430,
+        "y": 560,
         "wires": [
             []
         ]
@@ -533,5 +548,26 @@
         "wires": [
             []
         ]
+    },
+    {
+        "id": "dc6cc777c4c06ae4",
+        "type": "ui_text",
+        "z": "da87c06b1630f232",
+        "group": "664e765b6d3f60a4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 410,
+        "y": 660,
+        "wires": []
     }
 ]
