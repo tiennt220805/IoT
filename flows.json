@@ -625,7 +625,6 @@
         "y": 360,
         "wires": [
             [
-                "66dcbe4143e71a11",
                 "5bf3abaa1cad2399"
             ]
         ]
@@ -647,8 +646,7 @@
         "y": 360,
         "wires": [
             [
-                "ae59dc262e5bbecb",
-                "811e221f77a192a8"
+                "ae59dc262e5bbecb"
             ]
         ]
     },
@@ -668,38 +666,6 @@
         "broker": "12d69b4da3954903",
         "x": 790,
         "y": 360,
-        "wires": []
-    },
-    {
-        "id": "811e221f77a192a8",
-        "type": "debug",
-        "z": "a40e584c8e5de0f2",
-        "name": "debug 1",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 560,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "66dcbe4143e71a11",
-        "type": "debug",
-        "z": "a40e584c8e5de0f2",
-        "name": "debug 2",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 780,
-        "y": 460,
         "wires": []
     }
 ]
