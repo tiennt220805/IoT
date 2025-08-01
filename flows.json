@@ -182,7 +182,7 @@
     {
         "id": "81ef54f27017475c",
         "type": "ui_tab",
-        "name": "Admin Panel",
+        "name": "Admin - Control",
         "icon": "dashboard",
         "order": 2,
         "disabled": false,
@@ -191,9 +191,9 @@
     {
         "id": "4990ebb879db9878",
         "type": "ui_tab",
-        "name": "User Panel",
+        "name": "User - Control",
         "icon": "dashboard",
-        "order": 3,
+        "order": 6,
         "disabled": false,
         "hidden": false
     },
@@ -220,6 +220,42 @@
         "className": ""
     },
     {
+        "id": "dd4571b20c510b69",
+        "type": "ui_tab",
+        "name": "Admin - History",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0790792c5c7090d4",
+        "type": "ui_tab",
+        "name": "Admin - Statistics",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a0497252022e9752",
+        "type": "ui_tab",
+        "name": "Admin - Temperature",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ece0ba10d0ed6a08",
+        "type": "ui_tab",
+        "name": "User - Password",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    },
+    {
         "id": "f73417ef6a7504fa",
         "type": "ui_template",
         "z": "da87c06b1630f232",
@@ -235,7 +271,7 @@
         "templateScope": "global",
         "className": "",
         "x": 150,
-        "y": 140,
+        "y": 80,
         "wires": [
             []
         ]
@@ -354,8 +390,8 @@
         "resendOnRefresh": true,
         "templateScope": "local",
         "className": "",
-        "x": 630,
-        "y": 260,
+        "x": 330,
+        "y": 80,
         "wires": [
             []
         ]
@@ -377,7 +413,7 @@
         "type": "function",
         "z": "da87c06b1630f232",
         "name": "Chọn tab ứng với admin/user",
-        "func": "if (msg.payload.success) {\n    \n    let nextTab = (msg.payload.role === \"admin\") ? \"Admin Panel\" : \"User Panel\";\n    \n    msg.payload = {\n        \"tab\": nextTab\n    }\n\n    return msg;\n} else {\n    node.warn(\"Sai thông tin đăng nhập: \" + msg.payload.message);\n    return null;\n}",
+        "func": "if (msg.payload.success) {\n    \n    let nextTab = (msg.payload.role === \"admin\") ? \"Admin - Control\" : \"User - Control\";\n    \n    msg.payload = {\n        \"tab\": nextTab\n    }\n\n    return msg;\n} else {\n    node.warn(\"Sai thông tin đăng nhập: \" + msg.payload.message);\n    return null;\n}",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -451,18 +487,17 @@
                 "p": "payload"
             }
         ],
-        "repeat": "0.1",
+        "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
+        "onceDelay": "1",
         "topic": "",
         "payload": "",
         "payloadType": "date",
         "x": 170,
-        "y": 260,
+        "y": 160,
         "wires": [
             [
-                "9c377bcdcf4dfbed",
                 "1e5b0ffb31356576"
             ]
         ]
@@ -472,14 +507,14 @@
         "type": "function",
         "z": "da87c06b1630f232",
         "name": "function 1",
-        "func": "msg.payload = {\n    \"tabs\": {\n        \"hide\": [\n            \"Admin Panel\", \n            \"User Panel\"\n        ]\n    }\n};\n\nreturn msg;",
+        "func": "msg.payload = {\n    \"tabs\": {\n        \"hide\": [\n            \"Admin - Control\", \n            \"User - Control\"\n        ]\n    }\n};\n\nreturn msg;",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 580,
+        "x": 360,
         "y": 160,
         "wires": [
             [
@@ -493,7 +528,7 @@
         "z": "da87c06b1630f232",
         "name": "",
         "events": "all",
-        "x": 980,
+        "x": 560,
         "y": 160,
         "wires": [
             []
