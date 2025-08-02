@@ -16,23 +16,43 @@ Servo servo1;
 Servo servo2;
 unsigned long servo_last_millis = 0;
 
-// -------- PCF8574 --------
+// --- PCF8574 ---
 PCF8574 pcf8574(0x20, 21, 22);  // Address 0x20, SDA=21, SCL=22
 #define BUZZER_PIN 0  // P0
 bool buzzer_emergency_flag = false;
 bool buzzer_on = false;
 unsigned long buzzer_last_toggle = 0;
 
-
-// Khai báo hàm
-void receive_servo_status(char* topic, String message, unsigned int length);
-void receive_buzzer_status(String message);
-void publish_servo_status();
-void handle_buzzer_emergency();
-
+// --- Ultrasonic---
+unsigned long ultrasonic_last_millis = 0;
+struct UltrasonicSensor {
+  int trigPin;
+  int echoPin;
+  const char* topic;
+};
+UltrasonicSensor ultrasonic_sensors[] = {
+  {14, 12, "23127128/ultrasonic1"},
+  {26, 25, "23127128/ultrasonic2"},
+  {27, 33, "23127128/ultrasonic3"},
+  {4,  18, "23127128/ultrasonic4"},
+};
+String slots_status[] = {
+  "empty", "empty", "empty", "empty",
+};
+const int numSensors = sizeof(ultrasonic_sensors) / sizeof(ultrasonic_sensors[0]);
 
 // --- ---
 
+// -------------- Khai báo hàm --------------
+void receive_servo_status(char* topic, String message, unsigned int length);
+void publish_servo_status();
+void receive_buzzer_status(String message);
+void handle_buzzer_emergency();
+float getDistance (int trig_pin, int echo_pin);
+void publish_ultrasonic_satatus()
+
+
+// ------------------------------------------
 WiFiClient wifiClient;
 PubSubClient mqttClient(wifiClient);
 
@@ -57,7 +77,10 @@ void mqttConnect() {
       mqttClient.subscribe("23127128/servo1");
       mqttClient.subscribe("23127128/servo2");
       mqttClient.subscribe("23127184/buzzer");
-     
+      mqttClient.subscribe("23127128/ultrasonic1");
+      mqttClient.subscribe("23127128/ultrasonic2");
+      mqttClient.subscribe("23127128/ultrasonic3");
+      mqttClient.subscribe("23127128/ultrasonic4");
     }
     else {
       Serial.print(mqttClient.state());
@@ -116,6 +139,12 @@ void setup() {
   pcf8574.pinMode(BUZZER_PIN, OUTPUT);
   pcf8574.digitalWrite(BUZZER_PIN, LOW);  // buzzer off ban đầu
   
+  // -- Ultrasonic --
+  // Các chân trig gán OUTPUT, các chân echo gán INPUT
+  for (int i = 0; i < numSensors; i++) {
+    pinMode(ultrasonic_sensors[i].trigPin, OUTPUT);
+    pinMode(ultrasonic_sensors[i].echoPin, INPUT);
+  }
 }
 
 
@@ -134,6 +163,9 @@ void loop() {
   publish_servo_status();
 
   handle_buzzer_emergency();
+
+  publish_ultrasonic_satatus();
+
 }
 
 // -------------- Hàm phụ trợ --------------
@@ -176,6 +208,8 @@ void receive_servo_status(char* topic, String message, unsigned int length) {
   }
 }
 
+
+// -- buzzer --
 void receive_buzzer_status(String message) {
   message.trim();
   if (message == "1") {
@@ -201,3 +235,30 @@ void handle_buzzer_emergency() {
 }
 
 
+// --- Ultrasonic ---
+float getDistance (int trig_pin, int echo_pin) {
+  digitalWrite(trig_pin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig_pin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig_pin, LOW);
+
+  float duration = pulseIn(echo_pin, HIGH);
+  float distancem = duration * 0.034 / 2;
+  return distancem;
+}
+
+void publish_ultrasonic_satatus() {
+  int current_millis = millis();
+  
+  if (current_millis - ultrasonic_last_millis > 500) {
+    ultrasonic_last_millis = current_millis;
+
+    for (int i = 0; i < numSensors; i++) {
+      float distance = getDistance(ultrasonic_sensors[i].trigPin, ultrasonic_sensors[i].echoPin);
+      slots_status[i] = (distance > 0 && distance < 5) ? "occupied" : "empty";
+      mqttClient.publish(ultrasonic_sensors[i].topic, slots_status[i].c_str());
+      delay(60);
+    }
+  }
+}
