@@ -1,0 +1,1129 @@
+[
+    {
+        "id": "da87c06b1630f232",
+        "type": "tab",
+        "label": "Login",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "45b68366d67e5545",
+        "type": "tab",
+        "label": "Admin - Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "809f97db1d2ec250",
+        "type": "tab",
+        "label": "Admin - Statistics",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "21e60a2b1e9ad4b1",
+        "type": "tab",
+        "label": "Admin - Temperature",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "101e73a07b35c01a",
+        "type": "tab",
+        "label": "User - Control",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "c6ddfa3077e5111b",
+        "type": "tab",
+        "label": "User - Password",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a40e584c8e5de0f2",
+        "type": "tab",
+        "label": "RFID",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f64ef98e29994e70",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-custom",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#485cef",
+                "baseFont": "Arial,Arial,Helvetica,sans-serif",
+                "reset": false
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#485cef",
+                    "value": "#485cef",
+                    "edited": true
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#485cef",
+                    "edited": true
+                },
+                "page-backgroundColor": {
+                    "value": "#111111",
+                    "edited": true
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#8e9bf5",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#555555",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#eeeeee",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#485cef",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#333333",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "Arial,Arial,Helvetica,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "205606e184a7fe4c",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f529b217e3c98753",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "295842c0ae550b53",
+        "type": "ui_tab",
+        "name": "Login",
+        "icon": "",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "7af773d23c0231cd",
+        "type": "ui_group",
+        "name": "Login Form",
+        "tab": "295842c0ae550b53",
+        "order": 2,
+        "disp": false,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "169a8290f14f2096",
+        "type": "ui_group",
+        "name": "Hide group frame",
+        "tab": "295842c0ae550b53",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "81ef54f27017475c",
+        "type": "ui_tab",
+        "name": "Admin - Control",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "4990ebb879db9878",
+        "type": "ui_tab",
+        "name": "User - Control",
+        "icon": "dashboard",
+        "order": 6,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3ca1c64d53eba629",
+        "type": "ui_group",
+        "name": "Control Panel Text",
+        "tab": "81ef54f27017475c",
+        "order": 1,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "664e765b6d3f60a4",
+        "type": "ui_group",
+        "name": "Control Button",
+        "tab": "4990ebb879db9878",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "dd4571b20c510b69",
+        "type": "ui_tab",
+        "name": "Admin - History",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "0790792c5c7090d4",
+        "type": "ui_tab",
+        "name": "Admin - Statistics",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a0497252022e9752",
+        "type": "ui_tab",
+        "name": "Admin - Temperature",
+        "icon": "dashboard",
+        "order": 5,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "ece0ba10d0ed6a08",
+        "type": "ui_tab",
+        "name": "User - Password",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "5e898114b395103f",
+        "type": "ui_group",
+        "name": "Servo In",
+        "tab": "81ef54f27017475c",
+        "order": 2,
+        "disp": false,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f85da38d895c2f23",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.1.5",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "90",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "d05af15edf2723d4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "192.168.4.33",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": "90",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "1e9e0742af30b2d1",
+        "type": "ui_group",
+        "name": "Servo Out",
+        "tab": "81ef54f27017475c",
+        "order": 3,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "12d69b4da3954903",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.mqtt-dashboard.com",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "f73417ef6a7504fa",
+        "type": "ui_template",
+        "z": "da87c06b1630f232",
+        "group": "169a8290f14f2096",
+        "name": "Reset CSS",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<style>\n    * {\n        margin: 0;\n        padding: 0;\n        box-sizing: border-box !important; \n    }\n\n    /* Ẩn tiêu đề group */\n    .nr-dashboard-cardtitle {\n        display: none !important;\n    }\n\n    /* Xóa mọi thứ liên quan tới khung của group */\n    ui-card-panel,\n    .nr-dashboard-template,\n    .nr-dashboard-card,\n    .nr-dashboard-group,\n    .md-card,\n    md-content,\n    md-card-content,\n    .nr-dashboard-theme,\n    .md-default-theme .md-card,\n    .nr-dashboard-theme md-content,\n    md-content.md-default-theme { \n        box-shadow: none !important;\n        border: none !important;\n        padding: 0 !important;\n        margin: 0 !important;\n    }\n</style>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "global",
+        "className": "",
+        "x": 150,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "aec95dda1672bc0d",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "register-handler",
+        "func": "let db = global.get(\"firebase\").db;\n\nlet { email, username, password } = msg.payload;\nlet role = \"user\";\n\nif (!email || !username || !password) {\n    msg.statusCode = 400;\n    msg.payload = { \n        success: false,\n        error: \"Missing fields!\" \n    };\n    return msg;\n}\n\nreturn db.collection(\"accounts\").doc(username).get()\n    .then(doc => {\n        if (doc.exists) {\n            // Tên người dùng đã tồn tại\n            msg.statusCode = 409;\n            msg.payload = {\n                success: false,\n                error: \"Tên người dùng đã được sử dụng.\" \n            };\n            return msg;\n        }\n        else {\n            // Đăng ký người dùng mới\n            return db.collection(\"accounts\").doc(username).set({\n                email: email,\n                username: username,\n                password: password,\n                role: role\n            })\n            .then(() => {\n                msg.statusCode = 200;\n                msg.payload = {\n                    success: true,\n                    message: \"Đăng ký thành công!\" \n                };\n                return msg;\n            })\n        }\n    })\n    .catch(err => {\n        msg.statusCode = 500;\n        msg.payload = {\n            success: false,\n            error: \"Lỗi server: \" + err.message \n        };\n        return msg;\n    })",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 320,
+        "wires": [
+            [
+                "f3cd558fae2dd09b"
+            ]
+        ]
+    },
+    {
+        "id": "295d8d5f00452f9f",
+        "type": "http in",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "url": "/register",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 320,
+        "wires": [
+            [
+                "aec95dda1672bc0d"
+            ]
+        ]
+    },
+    {
+        "id": "f3cd558fae2dd09b",
+        "type": "http response",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "152372a6f8c7e3f3",
+        "type": "http in",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "url": "/login",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 380,
+        "wires": [
+            [
+                "2bdba2c5423e2e67"
+            ]
+        ]
+    },
+    {
+        "id": "2bdba2c5423e2e67",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "login-handler",
+        "func": "let db = global.get(\"firebase\").db;\n\nlet { username, password } = msg.payload;\n\nreturn db.collection(\"accounts\")\n    .where(\"username\", \"==\", username)\n    .get()\n    .then(snapshot => {\n        if (snapshot.empty) {\n            msg.payload = {\n                success: false,\n                error: \"Tài khoản không tồn tại\"\n            };\n            return [msg, msg];\n        }\n        \n        let userDoc = snapshot.docs[0];\n        let userData = userDoc.data();\n\n        if (userData.password === password) {\n            msg.payload = {\n                success: true,\n                role: userData.role,\n                message: \"Đăng nhập thành công!\"\n            };\n        }\n        else {\n            msg.payload = {\n                success: false,\n                error: \"Sai mật khẩu!\"\n            };\n        }\n        return [msg, msg];\n    })\n    .catch(err => {\n        msg.payload = \"Lỗi hệ thống: \" + err.message;\n        return [msg, null];\n    });",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 350,
+        "y": 380,
+        "wires": [
+            [
+                "2fd018e143bacb74"
+            ],
+            [
+                "2c980a16b067258a"
+            ]
+        ]
+    },
+    {
+        "id": "2fd018e143bacb74",
+        "type": "http response",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 530,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "9c377bcdcf4dfbed",
+        "type": "ui_template",
+        "z": "da87c06b1630f232",
+        "group": "7af773d23c0231cd",
+        "name": "login-page",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<div class=\"container sign-in-container\">\n    <div class=\"sign-in-box\">\n        <div class=\"heading\">\n            Parking System\n        </div>\n        <form id=\"sign-in-form\">\n            <div class=\"input-box\">\n                <input type=\"text\" placeholder=\"Username\" id=\"username-signin\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"password\" placeholder=\"Password\" id=\"password-signin\" class=\"form-control\" required>\n            </div>\n            <button type=\"submit\">Login</button>\n        </form>\n\n       <div class=\"sign-up-btn js-sign-up-btn\">\n            Sign Up \n        </div>\n    </div>\n</div>\n\n<div class=\"container sign-up-container\">\n    <div class=\"sign-up-box\">\n        <div class=\"heading\"> \n            Sign Up\n        </div>\n        <form id=\"sign-up-form\">\n            <div class=\"input-box\">\n                <input type=\"email\" placeholder=\"Email\" id=\"email-signup\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"text\" placeholder=\"Username\" id=\"username-signup\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"password\" placeholder=\"Password\" id=\"password-signup\" class=\"form-control\" required>\n            </div>\n            <div class=\"input-box\">\n                <input type=\"password\" placeholder=\"Password again\" id=\"password-again-signup\" class=\"form-control\" required>\n            </div>\n            <button type=\"submit\">Register</button>\n        </form>\n\n        <div class=\"back-login-btn js-back-login-btn\">\n            Back to login\n        </div>\n    </div>\n</div>\n\n\n<style>\n    .open {\n        display: flex !important;\n    }\n\n    .close {\n        display: none !important;\n    }\n\n    .container {\n        position: fixed;\n        top: 0;\n        bottom: 0;\n        left: 0;\n        right: 0;\n    }\n\n    .sign-in-container {\n        display: flex;\n        justify-content: center;\n        align-items: center;\n        font-family: 'Arial', sans-serif;\n        width: 100%;\n        height: 100%;\n        background: transparent !important;\n        box-shadow: none !important;\n    }\n\n    .sign-up-container {\n        display: none;\n        justify-content: center;\n        align-items: center;\n        font-family: 'Arial', sans-serif;\n        width: 100%;\n        height: 100%;\n        background: transparent !important;\n        box-shadow: none !important;\n        animation: modalFadeIn ease 0.5s;\n    }\n\n    .sign-in-box,\n    .sign-up-box {\n        background-color: rgba(255, 255, 255, 0.9);\n        border-radius: 10px;\n        padding: 20px 40px;\n        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);\n        text-align: center;\n        width: 100%;\n        max-width: 500px;\n    }\n\n    .sign-in-box .heading,\n    .sign-up-box .heading {\n        font-size: 24px;\n        font-weight: 700;\n        margin-bottom: 20px;\n        color: #485CEF !important;\n        background-color: transparent !important;\n    }\n\n    .input-box {\n        width: 100%;\n        margin-top: 10px;\n    }\n\n    form .form-control {\n        display: inline-block !important; \n        width: 100% !important; \n        padding: 12px;\n        border-radius: 6px;\n        border: 1px solid #ccc;\n        font-size: 16px;\n    }\n\n    form button {\n        width: 100%;\n        padding: 12px;\n        margin-top: 20px;\n        border: none;\n        border-radius: 6px;\n        background-color: #1976D2;\n        color: white;\n        font-size: 16px;\n        cursor: pointer;\n        transition: background-color 0.3s ease;\n    }\n\n    form button:hover {\n        background-color: #1565C0;\n    }\n\n    .sign-up-btn,\n    .back-login-btn {\n        width: 100%;\n        margin-top: 16px;\n        text-align: center;\n        font-size: 12px;\n        text-decoration: underline;\n        color: #4869ef !important;\n        background-color: transparent !important;\n    }\n\n    .sign-up-btn:hover,\n    .back-login-btn:hover {\n        cursor: pointer;\n        opacity: 0.6;\n    }\n\n    @keyframes modalFadeIn {\n        from {\n            opacity: 0;\n            transform: translateY(-140px);\n        }\n        to {\n            opacity: 1;\n            transform: translateY(0);\n        }\n    }\n\n</style>\n\n\n<script>\n    let signup_btn = document.querySelector('.js-sign-up-btn');\n    let backlogin_btn = document.querySelector('.js-back-login-btn');\n    let signin_container = document.querySelector('.sign-in-container');\n    let signup_container = document.querySelector('.sign-up-container');\n    \n    function showSignUp() {\n        signin_container.classList.add('close');\n        signup_container.classList.add('open');\n    }\n    \n    function hideSignUp() {\n        signin_container.classList.remove('close');\n        signup_container.classList.remove('open');\n    }\n    \n    signup_btn.addEventListener('click', showSignUp);\n    backlogin_btn.addEventListener('click', hideSignUp);\n    \n    // --------- Xử lý đăng ký tài khoản ---------\n    document.getElementById('sign-up-form').addEventListener('submit', function(event) {\n        event.preventDefault();\n        \n        let email = document.getElementById(\"email-signup\").value;\n        let username = document.getElementById(\"username-signup\").value;\n        let password = document.getElementById(\"password-signup\").value;\n        let passwordAgain = document.getElementById(\"password-again-signup\").value;\n        \n        let registed_data = {\n            email: email,\n            username: username,\n            password: password\n        };\n        \n        if (password !== passwordAgain) {\n            alert(\"Passwords do not match!\");\n            return;\n        };\n            \n        fetch(\"/register\", {\n            method: \"POST\",\n            headers: {\n            \"Content-Type\": \"application/json\"\n            },\n            body: JSON.stringify(registed_data)\n        })\n        .then((res) => res.json())\n        .then(data => {\n            if (data.success) {\n                alert(data.message);\n            }\n            else {\n                alert(\"Đăng ký thất bại: \" + data.error);\n            }\n        })\n        .catch((err) => console.error(err));\n    });\n\n    \n    // --------- Xử lý đăng nhập tài khoản ---------\n    document.getElementById('sign-in-form').addEventListener('submit', function(event) {\n        event.preventDefault();\n        \n        let username = document.getElementById('username-signin').value;\n        let password = document.getElementById('password-signin').value;\n\n        let login_data = {\n            username: username,\n            password: password\n        };\n\n        fetch(\"/login\", {\n            method: \"POST\",\n            headers: {\"Content-Type\": \"application/json\"},\n            body: JSON.stringify(login_data)\n        })\n        .then((res) => res.json())\n        .then(data => {\n            if (data.success) {\n                console.log(data.message);\n            }\n            else {\n                console.log(data.error);\n            }\n        })\n        .catch(err => alert(\"Lỗi khi gửi login: \" + err));\n    });\n\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 330,
+        "y": 80,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "151b649810818a4e",
+        "type": "ui_ui_control",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "events": "all",
+        "x": 840,
+        "y": 480,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2c980a16b067258a",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "Chọn tab ứng với admin/user",
+        "func": "if (msg.payload.success) {\n    \n    let nextTab = (msg.payload.role === \"admin\") ? \"Admin - Control\" : \"User - Control\";\n    \n    msg.payload = {\n        \"tab\": nextTab\n    }\n\n    return msg;\n} else {\n    node.warn(\"Sai thông tin đăng nhập: \" + msg.payload.message);\n    return null;\n}",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 570,
+        "y": 480,
+        "wires": [
+            [
+                "151b649810818a4e"
+            ]
+        ]
+    },
+    {
+        "id": "868c228f862e5cba",
+        "type": "inject",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "1e5b0ffb31356576"
+            ]
+        ]
+    },
+    {
+        "id": "1e5b0ffb31356576",
+        "type": "function",
+        "z": "da87c06b1630f232",
+        "name": "function 1",
+        "func": "msg.payload = {\n    \"tabs\": {\n        \"hide\": [\n            \"Admin - Control\", \n            \"User - Control\"\n        ]\n    }\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 160,
+        "wires": [
+            [
+                "ecd80e87fcf81b80"
+            ]
+        ]
+    },
+    {
+        "id": "ecd80e87fcf81b80",
+        "type": "ui_ui_control",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "events": "all",
+        "x": 560,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc6cc777c4c06ae4",
+        "type": "ui_text",
+        "z": "45b68366d67e5545",
+        "group": "3ca1c64d53eba629",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 450,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "947e021710de66bc",
+        "type": "inject",
+        "z": "45b68366d67e5545",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "Bảng điều khiển",
+        "payloadType": "str",
+        "x": 200,
+        "y": 80,
+        "wires": [
+            [
+                "dc6cc777c4c06ae4",
+                "7c3181f7a82b03ec"
+            ]
+        ]
+    },
+    {
+        "id": "97941b3101a26a02",
+        "type": "ui_text",
+        "z": "45b68366d67e5545",
+        "group": "5e898114b395103f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 610,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "af46ccbab7c7651b",
+        "type": "inject",
+        "z": "45b68366d67e5545",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "Trạng thái thanh chắn vào",
+        "payloadType": "str",
+        "x": 370,
+        "y": 220,
+        "wires": [
+            [
+                "97941b3101a26a02"
+            ]
+        ]
+    },
+    {
+        "id": "a75c37e710789e69",
+        "type": "mqtt in",
+        "z": "45b68366d67e5545",
+        "name": "",
+        "topic": "23127128/servo1",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f85da38d895c2f23",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 380,
+        "y": 280,
+        "wires": [
+            [
+                "1093fc51d341c9a9"
+            ]
+        ]
+    },
+    {
+        "id": "1093fc51d341c9a9",
+        "type": "function",
+        "z": "45b68366d67e5545",
+        "name": "function 2",
+        "func": "if (parseInt(msg.payload) >= 150) {\n    msg.payload = \"đang đóng\";\n    flow.set(\"servo1_status\", 180)\n} \nelse {\n    msg.payload = \"đang mở\";\n    flow.set(\"servo1_status\", 90)\n}\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 280,
+        "wires": [
+            [
+                "8058afd5cda91f2f"
+            ]
+        ]
+    },
+    {
+        "id": "8058afd5cda91f2f",
+        "type": "ui_text",
+        "z": "45b68366d67e5545",
+        "group": "5e898114b395103f",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 750,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9f28c5621ee7942c",
+        "type": "ui_button",
+        "z": "45b68366d67e5545",
+        "name": "Button Servo 1",
+        "group": "5e898114b395103f",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Nhấn",
+        "tooltip": "",
+        "color": "red",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "toggle",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 180,
+        "y": 360,
+        "wires": [
+            [
+                "b274f806387e8ccc"
+            ]
+        ]
+    },
+    {
+        "id": "b274f806387e8ccc",
+        "type": "function",
+        "z": "45b68366d67e5545",
+        "name": "function 3",
+        "func": "let servo1_status = flow.get(\"servo1_status\");\n\nservo1_status = (servo1_status >= 150) ? 90 : 180;\nflow.set(\"servo1_status\", servo1_status)\n\nmsg.payload = servo1_status;\n\nreturn [msg, msg];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 360,
+        "wires": [
+            [
+                "1093fc51d341c9a9"
+            ],
+            [
+                "88ea9bf0657f50fa"
+            ]
+        ]
+    },
+    {
+        "id": "7c3181f7a82b03ec",
+        "type": "function",
+        "z": "45b68366d67e5545",
+        "name": "function 4",
+        "func": "flow.set(\"servo1_status\", 180)\nflow.set(\"servo2_status\", 180)\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "88ea9bf0657f50fa",
+        "type": "mqtt out",
+        "z": "45b68366d67e5545",
+        "name": "",
+        "topic": "23127128/servo1",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f85da38d895c2f23",
+        "x": 610,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "e29942d83539bd9a",
+        "type": "ui_text",
+        "z": "45b68366d67e5545",
+        "group": "1e9e0742af30b2d1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 630,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "af536837b24ea3c9",
+        "type": "inject",
+        "z": "45b68366d67e5545",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "Trạng thái thanh chắn ra",
+        "payloadType": "str",
+        "x": 390,
+        "y": 460,
+        "wires": [
+            [
+                "e29942d83539bd9a"
+            ]
+        ]
+    },
+    {
+        "id": "ad536c9730761df5",
+        "type": "mqtt in",
+        "z": "45b68366d67e5545",
+        "name": "",
+        "topic": "23127128/servo2",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "f85da38d895c2f23",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "79ed38535b7c23c3"
+            ]
+        ]
+    },
+    {
+        "id": "79ed38535b7c23c3",
+        "type": "function",
+        "z": "45b68366d67e5545",
+        "name": "function 5",
+        "func": "if (parseInt(msg.payload) >= 150) {\n    msg.payload = \"đang đóng\";\n    flow.set(\"servo2_status\", 180)\n} \nelse {\n    msg.payload = \"đang mở\";\n    flow.set(\"servo2_status\", 90)\n}\nreturn msg;\n\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 520,
+        "wires": [
+            [
+                "963169418746eca1"
+            ]
+        ]
+    },
+    {
+        "id": "963169418746eca1",
+        "type": "ui_text",
+        "z": "45b68366d67e5545",
+        "group": "1e9e0742af30b2d1",
+        "order": 1,
+        "width": "3",
+        "height": "1",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 770,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "0c3dd6262947659d",
+        "type": "ui_button",
+        "z": "45b68366d67e5545",
+        "name": "Button Servo 2",
+        "group": "1e9e0742af30b2d1",
+        "order": 2,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "label": "Nhấn",
+        "tooltip": "",
+        "color": "red",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "toggle",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 200,
+        "y": 600,
+        "wires": [
+            [
+                "3da54a0e93cfea3f"
+            ]
+        ]
+    },
+    {
+        "id": "3da54a0e93cfea3f",
+        "type": "function",
+        "z": "45b68366d67e5545",
+        "name": "function 6",
+        "func": "let servo2_status = flow.get(\"servo2_status\");\n\nservo2_status = (servo2_status >= 150) ? 90 : 180;\nflow.set(\"servo2_status\", servo2_status)\n\nmsg.payload = servo2_status;\n\nreturn [msg, msg];",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 600,
+        "wires": [
+            [
+                "79ed38535b7c23c3"
+            ],
+            [
+                "8d63d0ad02497fd2"
+            ]
+        ]
+    },
+    {
+        "id": "8d63d0ad02497fd2",
+        "type": "mqtt out",
+        "z": "45b68366d67e5545",
+        "name": "",
+        "topic": "23127128/servo2",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "f85da38d895c2f23",
+        "x": 630,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "ae59dc262e5bbecb",
+        "type": "function",
+        "z": "a40e584c8e5de0f2",
+        "name": "Đọc UID thẻ",
+        "func": "let db = global.get(\"firebase\").db;\nlet { ID } = msg.payload;\n\nlet now = new Date();\nlet nowTime = now.toTimeString().split(' ')[0];  \n\nreturn db.collection(\"ID\").doc(ID).get()\n.then(doc => {\n    if (!doc.exists) {\n        return db.collection(\"ID\").doc(ID).set({\n            position: '',\n            time_in: nowTime,\n            time_out: null,\n        }).then(() => {\n            msg.payload = { message: nowTime };\n            msg.statusCode = 200;\n            return msg;\n        });\n    }\n\n    let data = doc.data();\n\n    if (!data.time_out) {\n        let [h, m, s] = data.time_in.split(\":\" ).map(Number);\n        let timeIn = new Date();\n        timeIn.setHours(h, m, s, 0);  \n\n        let diffMinutes = Math.floor((now - timeIn) / (1000 * 60));\n        let price = diffMinutes * 1000;\n\n        return db.collection(\"ID\").doc(ID).update({\n            time_out: nowTime\n        }).then(() => {\n            msg.payload = { price: price };\n            msg.statusCode = 200;\n            return msg;\n        });\n    }\n\n    return db.collection(\"ID\").doc(ID).update({\n        position: '',\n        time_in: nowTime,\n        time_out: null,\n    }).then(() => {\n        msg.payload = { message: nowTime };\n        msg.statusCode = 200;\n        return msg;\n    });\n});\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 360,
+        "wires": [
+            [
+                "5bf3abaa1cad2399"
+            ]
+        ]
+    },
+    {
+        "id": "1df6d03abe47796d",
+        "type": "mqtt in",
+        "z": "a40e584c8e5de0f2",
+        "name": "",
+        "topic": "parking/uid",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "12d69b4da3954903",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 350,
+        "y": 360,
+        "wires": [
+            [
+                "ae59dc262e5bbecb"
+            ]
+        ]
+    },
+    {
+        "id": "5bf3abaa1cad2399",
+        "type": "mqtt out",
+        "z": "a40e584c8e5de0f2",
+        "name": "",
+        "topic": "parking/response",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "12d69b4da3954903",
+        "x": 790,
+        "y": 360,
+        "wires": []
+    }
+]
