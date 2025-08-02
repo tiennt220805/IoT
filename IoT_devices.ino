@@ -1,6 +1,7 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <ESP32Servo.h>
+#include <PCF8574.h>
 
 const char* ssid = "Thanh Tien";
 const char* password = "phong220805";
@@ -14,6 +15,21 @@ const int port = 1883;
 Servo servo1;
 Servo servo2;
 unsigned long servo_last_millis = 0;
+
+// -------- PCF8574 --------
+PCF8574 pcf8574(0x20, 21, 22);  // Address 0x20, SDA=21, SCL=22
+#define BUZZER_PIN 0  // P0
+bool buzzer_emergency_flag = false;
+bool buzzer_on = false;
+unsigned long buzzer_last_toggle = 0;
+
+
+// Khai báo hàm
+void receive_servo_status(char* topic, String message, unsigned int length);
+void receive_buzzer_status(String message);
+void publish_servo_status();
+void handle_buzzer_emergency();
+
 
 // --- ---
 
@@ -40,6 +56,7 @@ void mqttConnect() {
       //***Subscribe all topic you need***
       mqttClient.subscribe("23127128/servo1");
       mqttClient.subscribe("23127128/servo2");
+      mqttClient.subscribe("23127184/buzzer");
      
     }
     else {
@@ -66,6 +83,9 @@ void callback(char* topic, byte* message, unsigned int length) {
   if (String(topic) == "23127128/servo2") {
     receive_servo_status(topic, msg, length);
   }
+  if (String(topic) == "23127184/buzzer") {
+    receive_buzzer_status(msg);
+  }
 }
 
 void setup() {
@@ -86,6 +106,15 @@ void setup() {
   servo1.write(180);
   servo2.write(180);
   delay(500);       // chờ cho servo chạy xong
+
+  // PCF8574 setup
+  if (pcf8574.begin()) {
+    Serial.println("PCF8574 OK");
+  } else {
+    Serial.println("PCF8574 Not connected");
+  }
+  pcf8574.pinMode(BUZZER_PIN, OUTPUT);
+  pcf8574.digitalWrite(BUZZER_PIN, LOW);  // buzzer off ban đầu
   
 }
 
@@ -103,6 +132,8 @@ void loop() {
 
   //***Publish data to MQTT Server***
   publish_servo_status();
+
+  handle_buzzer_emergency();
 }
 
 // -------------- Hàm phụ trợ --------------
@@ -142,6 +173,30 @@ void receive_servo_status(char* topic, String message, unsigned int length) {
   if (String(topic) == "23127128/servo2") {
     servo2.write(angle_needed);
     delay(500);
+  }
+}
+
+void receive_buzzer_status(String message) {
+  message.trim();
+  if (message == "1") {
+    buzzer_emergency_flag = true;  // Bật chế độ nhấp nháy
+  } else {
+    buzzer_emergency_flag = false; // Tắt nhấp nháy
+    buzzer_on = false;
+    pcf8574.digitalWrite(BUZZER_PIN, LOW);
+  }
+}
+
+void handle_buzzer_emergency() {
+  if (buzzer_emergency_flag) {
+    unsigned long now = millis();
+    if (now - buzzer_last_toggle >= 300) {
+      buzzer_on = !buzzer_on;
+      pcf8574.digitalWrite(BUZZER_PIN, buzzer_on ? HIGH : LOW);
+      buzzer_last_toggle = now;
+    }
+  } else {
+    pcf8574.digitalWrite(BUZZER_PIN, LOW);  // Luôn tắt nếu không khẩn cấp
   }
 }
 
