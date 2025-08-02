@@ -1,0 +1,148 @@
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <ESP32Servo.h>
+
+const char* ssid = "Thanh Tien";
+const char* password = "phong220805";
+
+//***Set server***
+const char* mqttServer = "192.168.1.5"; 
+const int port = 1883;
+
+// -------------- Biến toàn cục --------------
+// --- Servo ---
+Servo servo1;
+Servo servo2;
+unsigned long servo_last_millis = 0;
+
+// --- ---
+
+WiFiClient wifiClient;
+PubSubClient mqttClient(wifiClient);
+
+// -------------- Hàm quan trọng --------------
+void wifiConnect() {
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println(" Connected!");
+}
+
+void mqttConnect() {
+  while(!mqttClient.connected()) {
+    Serial.println("Attemping MQTT connection...");
+    String clientId = "ESP32Client-" + String(random(0xffff), HEX);
+    if(mqttClient.connect(clientId.c_str())) {
+      Serial.println("connected");
+
+      //***Subscribe all topic you need***
+      mqttClient.subscribe("23127128/servo1");
+      mqttClient.subscribe("23127128/servo2");
+     
+    }
+    else {
+      Serial.print(mqttClient.state());
+      Serial.println("try again in 5 seconds");
+      delay(5000);
+    }
+  }
+}
+
+//MQTT Receiver
+void callback(char* topic, byte* message, unsigned int length) {
+  Serial.println(topic);
+  String msg;
+  for(int i=0; i<length; i++) {
+    msg += (char)message[i];
+  }
+  Serial.println(msg);
+
+  //***Code here to process the received package***
+  if (String(topic) == "23127128/servo1") {
+    receive_servo_status(topic, msg, length);
+  }
+  if (String(topic) == "23127128/servo2") {
+    receive_servo_status(topic, msg, length);
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  Serial.print("Connecting to WiFi");
+
+  wifiConnect();
+  mqttClient.setServer(mqttServer, port);
+  mqttClient.setCallback(callback);
+  mqttClient.setKeepAlive( 90 );
+
+
+  // Gắn servo vào các chân
+  servo1.setPeriodHertz(50);
+  //servo2.setPeriodHertz(50);
+  servo1.attach(13); // servo1 -> GPIO13
+  servo2.attach(32); // servo2 -> GPIO32
+  servo1.write(180);
+  servo2.write(180);
+  delay(500);       // chờ cho servo chạy xong
+  
+}
+
+
+void loop() {
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.print("Reconnecting to WiFi");
+    wifiConnect();
+  }
+
+  if(!mqttClient.connected()) {
+    mqttConnect();
+  }
+  mqttClient.loop();
+
+  //***Publish data to MQTT Server***
+  publish_servo_status();
+}
+
+// -------------- Hàm phụ trợ --------------
+// --- servo ---
+void publish_servo_status() {
+  // Cứ 0.5s và nếu trạng thái bị thay đổi thì mới cập nhật lên mqtt
+  int current_millis = millis();
+  int servo1_status = servo1.read();
+  int servo2_status = servo2.read();
+  
+  if (current_millis - servo_last_millis > 5000) {
+    servo_last_millis = current_millis;
+
+    servo1_status = constrain(servo1_status, 0, 180);
+    servo2_status = constrain(servo2_status, 0, 180);
+    
+    char servo1_status_str[10], servo2_status_str[10];
+    sprintf(servo1_status_str, "%d", servo1_status);
+    mqttClient.publish("23127128/servo1", servo1_status_str);
+    sprintf(servo2_status_str, "%d", servo2_status);
+    mqttClient.publish("23127128/servo2", servo2_status_str);
+  }
+}
+
+void receive_servo_status(char* topic, String message, unsigned int length) {
+  int angle_needed = message.toInt();
+  angle_needed = (angle_needed <= 150) ? 90 : 180;
+  angle_needed = constrain(angle_needed, 0, 180);
+  
+  Serial.print(angle_needed);
+  Serial.print(topic);
+
+  if (String(topic) == "23127128/servo1") {
+    servo1.write(angle_needed);
+    delay(500);
+  }
+  if (String(topic) == "23127128/servo2") {
+    servo2.write(angle_needed);
+    delay(500);
+  }
+}
+
+
