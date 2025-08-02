@@ -48,6 +48,14 @@
         "env": []
     },
     {
+        "id": "a40e584c8e5de0f2",
+        "type": "tab",
+        "label": "RFID",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "f64ef98e29994e70",
         "type": "ui_base",
         "theme": {
@@ -240,10 +248,10 @@
     {
         "id": "3ca1c64d53eba629",
         "type": "ui_group",
-        "name": "Control Panel Text",
+        "name": "Group 1 - Admin",
         "tab": "81ef54f27017475c",
         "order": 1,
-        "disp": false,
+        "disp": true,
         "width": 6,
         "collapse": false,
         "className": ""
@@ -296,27 +304,16 @@
         "hidden": false
     },
     {
-        "id": "5e898114b395103f",
-        "type": "ui_group",
-        "name": "Servo In",
-        "tab": "81ef54f27017475c",
-        "order": 2,
-        "disp": false,
-        "width": 6,
-        "collapse": false,
-        "className": ""
-    },
-    {
-        "id": "f85da38d895c2f23",
+        "id": "12d69b4da3954903",
         "type": "mqtt-broker",
         "name": "",
-        "broker": "192.168.1.5",
+        "broker": "broker.mqtt-dashboard.com",
         "port": 1883,
         "clientid": "",
         "autoConnect": true,
         "usetls": false,
         "protocolVersion": 4,
-        "keepalive": "90",
+        "keepalive": 60,
         "cleansession": true,
         "autoUnsubscribe": true,
         "birthTopic": "",
@@ -336,48 +333,6 @@
         "willMsg": {},
         "userProps": "",
         "sessionExpiry": ""
-    },
-    {
-        "id": "d05af15edf2723d4",
-        "type": "mqtt-broker",
-        "name": "",
-        "broker": "192.168.4.33",
-        "port": 1883,
-        "clientid": "",
-        "autoConnect": true,
-        "usetls": false,
-        "protocolVersion": 4,
-        "keepalive": "90",
-        "cleansession": true,
-        "autoUnsubscribe": true,
-        "birthTopic": "",
-        "birthQos": "0",
-        "birthRetain": "false",
-        "birthPayload": "",
-        "birthMsg": {},
-        "closeTopic": "",
-        "closeQos": "0",
-        "closeRetain": "false",
-        "closePayload": "",
-        "closeMsg": {},
-        "willTopic": "",
-        "willQos": "0",
-        "willRetain": "false",
-        "willPayload": "",
-        "willMsg": {},
-        "userProps": "",
-        "sessionExpiry": ""
-    },
-    {
-        "id": "1e9e0742af30b2d1",
-        "type": "ui_group",
-        "name": "Servo Out",
-        "tab": "81ef54f27017475c",
-        "order": 3,
-        "disp": true,
-        "width": 6,
-        "collapse": false,
-        "className": ""
     },
     {
         "id": "f73417ef6a7504fa",
@@ -553,6 +508,30 @@
         ]
     },
     {
+        "id": "60a3a63cc760533f",
+        "type": "ui_text_input",
+        "z": "da87c06b1630f232",
+        "name": "",
+        "label": "input - User",
+        "tooltip": "",
+        "group": "664e765b6d3f60a4",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 430,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
         "id": "868c228f862e5cba",
         "type": "inject",
         "z": "da87c06b1630f232",
@@ -612,233 +591,71 @@
     {
         "id": "dc6cc777c4c06ae4",
         "type": "ui_text",
-        "z": "45b68366d67e5545",
-        "group": "3ca1c64d53eba629",
-        "order": 1,
-        "width": 0,
-        "height": 0,
+        "z": "da87c06b1630f232",
+        "group": "664e765b6d3f60a4",
+        "order": 2,
+        "width": 6,
+        "height": 1,
         "name": "",
-        "label": "",
+        "label": "text",
         "format": "{{msg.payload}}",
-        "layout": "col-center",
+        "layout": "row-spread",
         "className": "",
         "style": false,
         "font": "",
         "fontSize": 16,
         "color": "#000000",
-        "x": 450,
-        "y": 80,
+        "x": 410,
+        "y": 660,
         "wires": []
     },
     {
-        "id": "947e021710de66bc",
-        "type": "inject",
-        "z": "45b68366d67e5545",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "Bảng điều khiển",
-        "payloadType": "str",
-        "x": 200,
-        "y": 80,
+        "id": "ae59dc262e5bbecb",
+        "type": "function",
+        "z": "a40e584c8e5de0f2",
+        "name": "Đọc UID thẻ",
+        "func": "let db = global.get(\"firebase\").db;\nlet { ID } = msg.payload;\n\nlet now = new Date();\nlet nowTime = now.toTimeString().split(' ')[0];  \n\nreturn db.collection(\"ID\").doc(ID).get()\n.then(doc => {\n    if (!doc.exists) {\n        return db.collection(\"ID\").doc(ID).set({\n            position: '',\n            time_in: nowTime,\n            time_out: null,\n        }).then(() => {\n            msg.payload = { message: nowTime };\n            msg.statusCode = 200;\n            return msg;\n        });\n    }\n\n    let data = doc.data();\n\n    if (!data.time_out) {\n        let [h, m, s] = data.time_in.split(\":\" ).map(Number);\n        let timeIn = new Date();\n        timeIn.setHours(h, m, s, 0);  \n\n        let diffMinutes = Math.floor((now - timeIn) / (1000 * 60));\n        let price = diffMinutes * 1000;\n\n        return db.collection(\"ID\").doc(ID).update({\n            time_out: nowTime\n        }).then(() => {\n            msg.payload = { price: price };\n            msg.statusCode = 200;\n            return msg;\n        });\n    }\n\n    return db.collection(\"ID\").doc(ID).update({\n        position: '',\n        time_in: nowTime,\n        time_out: null,\n    }).then(() => {\n        msg.payload = { message: nowTime };\n        msg.statusCode = 200;\n        return msg;\n    });\n});\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 550,
+        "y": 360,
         "wires": [
             [
-                "dc6cc777c4c06ae4",
-                "7c3181f7a82b03ec"
+                "5bf3abaa1cad2399"
             ]
         ]
     },
     {
-        "id": "97941b3101a26a02",
-        "type": "ui_text",
-        "z": "45b68366d67e5545",
-        "group": "5e898114b395103f",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 610,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "af46ccbab7c7651b",
-        "type": "inject",
-        "z": "45b68366d67e5545",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "Trạng thái thanh chắn vào",
-        "payloadType": "str",
-        "x": 370,
-        "y": 220,
-        "wires": [
-            [
-                "97941b3101a26a02"
-            ]
-        ]
-    },
-    {
-        "id": "a75c37e710789e69",
+        "id": "1df6d03abe47796d",
         "type": "mqtt in",
-        "z": "45b68366d67e5545",
+        "z": "a40e584c8e5de0f2",
         "name": "",
-        "topic": "23127128/servo1",
+        "topic": "parking/uid",
         "qos": "2",
         "datatype": "auto-detect",
-        "broker": "f85da38d895c2f23",
+        "broker": "12d69b4da3954903",
         "nl": false,
         "rap": true,
         "rh": 0,
         "inputs": 0,
-        "x": 380,
-        "y": 280,
-        "wires": [
-            [
-                "1093fc51d341c9a9"
-            ]
-        ]
-    },
-    {
-        "id": "1093fc51d341c9a9",
-        "type": "function",
-        "z": "45b68366d67e5545",
-        "name": "function 2",
-        "func": "if (parseInt(msg.payload) >= 150) {\n    msg.payload = \"đang đóng\";\n    flow.set(\"servo1_status\", 180)\n} \nelse {\n    msg.payload = \"đang mở\";\n    flow.set(\"servo1_status\", 90)\n}\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 580,
-        "y": 280,
-        "wires": [
-            [
-                "8058afd5cda91f2f"
-            ]
-        ]
-    },
-    {
-        "id": "8058afd5cda91f2f",
-        "type": "ui_text",
-        "z": "45b68366d67e5545",
-        "group": "5e898114b395103f",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "name": "",
-        "label": "",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 750,
-        "y": 280,
-        "wires": []
-    },
-    {
-        "id": "9f28c5621ee7942c",
-        "type": "ui_button",
-        "z": "45b68366d67e5545",
-        "name": "Button Servo 1",
-        "group": "5e898114b395103f",
-        "order": 2,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Nhấn",
-        "tooltip": "",
-        "color": "red",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "toggle",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 180,
+        "x": 350,
         "y": 360,
         "wires": [
             [
-                "b274f806387e8ccc"
+                "ae59dc262e5bbecb"
             ]
         ]
     },
     {
-        "id": "b274f806387e8ccc",
-        "type": "function",
-        "z": "45b68366d67e5545",
-        "name": "function 3",
-        "func": "let servo1_status = flow.get(\"servo1_status\");\n\nservo1_status = (servo1_status >= 150) ? 90 : 180;\nflow.set(\"servo1_status\", servo1_status)\n\nmsg.payload = servo1_status;\n\nreturn [msg, msg];",
-        "outputs": 2,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 360,
-        "y": 360,
-        "wires": [
-            [
-                "1093fc51d341c9a9"
-            ],
-            [
-                "88ea9bf0657f50fa"
-            ]
-        ]
-    },
-    {
-        "id": "7c3181f7a82b03ec",
-        "type": "function",
-        "z": "45b68366d67e5545",
-        "name": "function 4",
-        "func": "flow.set(\"servo1_status\", 180)\nflow.set(\"servo2_status\", 180)\n\nreturn msg;",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 460,
-        "y": 140,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "88ea9bf0657f50fa",
+        "id": "5bf3abaa1cad2399",
         "type": "mqtt out",
-        "z": "45b68366d67e5545",
+        "z": "a40e584c8e5de0f2",
         "name": "",
-        "topic": "23127128/servo1",
+        "topic": "parking/response",
         "qos": "",
         "retain": "",
         "respTopic": "",
@@ -846,186 +663,9 @@
         "userProps": "",
         "correl": "",
         "expiry": "",
-        "broker": "f85da38d895c2f23",
-        "x": 610,
+        "broker": "12d69b4da3954903",
+        "x": 790,
         "y": 360,
-        "wires": []
-    },
-    {
-        "id": "e29942d83539bd9a",
-        "type": "ui_text",
-        "z": "45b68366d67e5545",
-        "group": "1e9e0742af30b2d1",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 630,
-        "y": 460,
-        "wires": []
-    },
-    {
-        "id": "af536837b24ea3c9",
-        "type": "inject",
-        "z": "45b68366d67e5545",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": "0.5",
-        "topic": "",
-        "payload": "Trạng thái thanh chắn ra",
-        "payloadType": "str",
-        "x": 390,
-        "y": 460,
-        "wires": [
-            [
-                "e29942d83539bd9a"
-            ]
-        ]
-    },
-    {
-        "id": "ad536c9730761df5",
-        "type": "mqtt in",
-        "z": "45b68366d67e5545",
-        "name": "",
-        "topic": "23127128/servo2",
-        "qos": "2",
-        "datatype": "auto-detect",
-        "broker": "f85da38d895c2f23",
-        "nl": false,
-        "rap": true,
-        "rh": 0,
-        "inputs": 0,
-        "x": 400,
-        "y": 520,
-        "wires": [
-            [
-                "79ed38535b7c23c3"
-            ]
-        ]
-    },
-    {
-        "id": "79ed38535b7c23c3",
-        "type": "function",
-        "z": "45b68366d67e5545",
-        "name": "function 5",
-        "func": "if (parseInt(msg.payload) >= 150) {\n    msg.payload = \"đang đóng\";\n    flow.set(\"servo2_status\", 180)\n} \nelse {\n    msg.payload = \"đang mở\";\n    flow.set(\"servo2_status\", 90)\n}\nreturn msg;\n\n",
-        "outputs": 1,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 600,
-        "y": 520,
-        "wires": [
-            [
-                "963169418746eca1"
-            ]
-        ]
-    },
-    {
-        "id": "963169418746eca1",
-        "type": "ui_text",
-        "z": "45b68366d67e5545",
-        "group": "1e9e0742af30b2d1",
-        "order": 1,
-        "width": "3",
-        "height": "1",
-        "name": "",
-        "label": "",
-        "format": "{{msg.payload}}",
-        "layout": "col-center",
-        "className": "",
-        "style": false,
-        "font": "",
-        "fontSize": 16,
-        "color": "#000000",
-        "x": 770,
-        "y": 520,
-        "wires": []
-    },
-    {
-        "id": "0c3dd6262947659d",
-        "type": "ui_button",
-        "z": "45b68366d67e5545",
-        "name": "Button Servo 2",
-        "group": "1e9e0742af30b2d1",
-        "order": 2,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "label": "Nhấn",
-        "tooltip": "",
-        "color": "red",
-        "bgcolor": "",
-        "className": "",
-        "icon": "",
-        "payload": "toggle",
-        "payloadType": "str",
-        "topic": "topic",
-        "topicType": "msg",
-        "x": 200,
-        "y": 600,
-        "wires": [
-            [
-                "3da54a0e93cfea3f"
-            ]
-        ]
-    },
-    {
-        "id": "3da54a0e93cfea3f",
-        "type": "function",
-        "z": "45b68366d67e5545",
-        "name": "function 6",
-        "func": "let servo2_status = flow.get(\"servo2_status\");\n\nservo2_status = (servo2_status >= 150) ? 90 : 180;\nflow.set(\"servo2_status\", servo2_status)\n\nmsg.payload = servo2_status;\n\nreturn [msg, msg];",
-        "outputs": 2,
-        "timeout": 0,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 380,
-        "y": 600,
-        "wires": [
-            [
-                "79ed38535b7c23c3"
-            ],
-            [
-                "8d63d0ad02497fd2"
-            ]
-        ]
-    },
-    {
-        "id": "8d63d0ad02497fd2",
-        "type": "mqtt out",
-        "z": "45b68366d67e5545",
-        "name": "",
-        "topic": "23127128/servo2",
-        "qos": "",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "f85da38d895c2f23",
-        "x": 630,
-        "y": 600,
         "wires": []
     }
 ]
